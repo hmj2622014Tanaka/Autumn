@@ -16,7 +16,7 @@ public class Clear : MonoBehaviour
         // クリックしたときゲーム画面になる
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("Kurayami");
         }
 
 

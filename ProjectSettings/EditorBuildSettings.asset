@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ClearScene.unity
     guid: 97e39af73310c7445aee18072ae5d6a6
+  - enabled: 1
+    path: Assets/Scenes/Kurayami.unity
+    guid: 474d75d9367b5d54b9e2cdaea8a24305
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
