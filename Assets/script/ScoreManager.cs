@@ -10,9 +10,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] TextMeshProUGUI resultText;
-    float timeRemaining = 60f;
+    [SerializeField] TextMeshProUGUI ClearTitleText;
 
+    float timeRemaining = 60f;
     private int score = 0;
+
+    // タイムアップ後にクリックを無効化する設定
+    [SerializeField] private float transitionDelay = 5.0f;
+    private float timeUpTimer = 0f; // タイムアップ経過時間のカウント用
 
     void Awake() => instance = this;
 
@@ -29,13 +34,22 @@ public class ScoreManager : MonoBehaviour
             {
                 timerText.text = "Time Up!";
                 resultText.text = "Final Score: " + score;
+                ClearTitleText.text = "ススキの中、もういない";
+                ClearTitleText.color = Color.red;
                 resultText.gameObject.SetActive(true);
+                ClearTitleText.gameObject.SetActive(true);
                 scoreText.gameObject.SetActive(false);
                 timerText.gameObject.SetActive(false);
             }
-            if (Mouse.current.rightButton.wasPressedThisFrame)
+
+            // タイムアップ後の経過時間をカウント
+            timeUpTimer += Time.deltaTime;
+
+            if (timeUpTimer < transitionDelay) return;
+
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                SceneManager.LoadScene("ClearScene");
+                SceneManager.LoadScene("Kurayami");
             }
         }
     }
