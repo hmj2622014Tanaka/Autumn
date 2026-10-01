@@ -6,7 +6,6 @@ public class GameScene : MonoBehaviour
     [SerializeField] GameObject enemyPrefab2;
     [SerializeField] Vector2 spawnRange = new Vector2(15f, 8f); // 横幅, 高さ
 
-    [Header("スポーン間隔の設定")]
     [SerializeField] float initialInterval = 3.0f; // スタート時のスポーン間隔（秒）
     [SerializeField] float minInterval = 1.0f;     // 最も早くなったときのスポーン間隔（秒）
     [SerializeField] float difficultySpeed = 0.05f; // 1秒ごとにどれくらい間隔を短くするか
@@ -33,7 +32,6 @@ public class GameScene : MonoBehaviour
             timer = 0f;
         }
     }
-
     void SpawnEnemy()
     {
         // 60秒経過したらスポーン終了

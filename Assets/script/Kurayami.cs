@@ -5,8 +5,11 @@ using TMPro;
 public class Kurayami : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] AudioSource audioSource; 
+    [SerializeField] AudioClip textSound;
 
     float timer;
+    bool soundPlayed = false;
 
     void Start()
     {
@@ -22,10 +25,17 @@ public class Kurayami : MonoBehaviour
         if(timer >= 3f &&  timer < 5f)
         {
             text.gameObject.SetActive(true);
+
+            // Œø‰Ê‰¹‚ð1‰ñ‚¾‚¯Ä¶
+            if (!soundPlayed) 
+            {
+                audioSource.PlayOneShot(textSound); 
+                soundPlayed = true; 
+            }
         }
 
         // 5•b‚Åƒ^ƒCƒgƒ‹‚Ö
-        if(timer >= 5f)
+        if (timer >= 5f)
         {
             SceneManager.LoadScene("TitleScene");
         }

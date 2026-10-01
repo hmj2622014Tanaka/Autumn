@@ -7,10 +7,14 @@ public class HighScoreEnemyClick : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] float lifeTime = 5f;
 
-    [SerializeField] int maxHP = 3;
+    [SerializeField] int maxHP = 2;
     [SerializeField] int scoreValue = 500;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip textSound;
+
     int currentHP;
+    bool soundPlayed = false;
 
     void Start()
     {
@@ -22,6 +26,11 @@ public class HighScoreEnemyClick : MonoBehaviour, IPointerDownHandler
     // マウス押下・タップ時に呼ばれる関数
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (ScoreManager.instance != null && ScoreManager.instance.IsTimeUp)
+        {
+            return;
+        }
+
         // 一回叩くごとにHPを減らす
         currentHP--;
 
@@ -31,6 +40,14 @@ public class HighScoreEnemyClick : MonoBehaviour, IPointerDownHandler
             if (ScoreManager.instance != null)
             {
                 ScoreManager.instance.AddScore(scoreValue);
+            }
+
+            // 効果音を1回だけ再生
+            if (!soundPlayed)
+            {
+                //audioSource.PlayOneShot(textSound);
+                AudioSource.PlayClipAtPoint(textSound, Camera.main.transform.position, 1.0f);
+                soundPlayed = true;
             }
 
             // ダメージ処理や消滅処理
